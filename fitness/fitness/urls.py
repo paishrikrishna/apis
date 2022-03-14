@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from apis.views import otp_verification, dashboard_apis, membership_data, user_data, available_dashboards, add_dashboard,todays_attendance_record, test, membership_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('otp/',otp_verification),
+    path('dashboard_apis/',dashboard_apis),
+    path('membership_data/',membership_data),
+    path('user_data/',user_data),
+    path('available_dashboards/',available_dashboards),
+    path('add_dashboard/',add_dashboard),
+    path('todays_attendance_record/',todays_attendance_record),
+    path('test/',test),
+    path('membership_detail/',membership_detail)
 ]
