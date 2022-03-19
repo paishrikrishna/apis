@@ -91,28 +91,5 @@ def membership_detail(request):
 
 
 def test(request):
-    # Import QRCode from pyqrcode
-    import qrcode
-
-    img = qrcode.make('test text')
-
-    print(img.size)
-
-    img.save('/home/paishrikrishna98/fitness_v1/apis/gym_images/myqr.png')
-
-    img = open('/home/paishrikrishna98/fitness_v1/apis/gym_images/myqr.png', 'rb')
-
-    response = FileResponse(img)
-    global test_string
-    try:
-        for filename, file in request.FILES.iteritems():
-            name = request.FILES[filename].name
-
-        test_string = name
-    except:
-        pass
-
-    #return response
-
-    return JsonResponse({"test":test_string})
+    return JsonResponse({"test":"test req"})
 
