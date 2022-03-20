@@ -25,17 +25,6 @@ def generateOTP():
 
 def otp_verification(request):
     otp = generateOTP()
-    message = """Subject: Login OTP
-
-{}
-    """
-    mailserver = smtplib.SMTP('smtp.gmail.com',587)
-    mailserver.ehlo()
-    mailserver.starttls()
-    mailserver.ehlo()
-    mailserver.login("paishrikrishna98@gmail.com", "shrikrishnanarayanpai@1498")
-    mailserver.sendmail("paishrikrishna98@gmail.com", "paishrikrishna98@gmail.com",message.format("Your 6 digit verification code is {}".format(otp)))
-    mailserver.quit()
     return JsonResponse({'Otp':otp})
 
 
