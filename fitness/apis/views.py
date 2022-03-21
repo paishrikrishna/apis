@@ -5,8 +5,15 @@ from django.http import JsonResponse, FileResponse
 from django.http import HttpResponse
 import math, random
 from apis.firebase_calls import firebase_data_api
+import boto3
 
 
+client = boto3.client(
+    "sns",
+    aws_access_key_id="AKIA4HPAZ567QXB4GCEG",
+    aws_secret_access_key="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",
+    region_name="ap-south-1"
+)
 
 
 gym = firebase_data_api("apis/fitnessv1-f3d22-firebase-adminsdk-dwou5-c1a931d3d0.json")
@@ -14,17 +21,21 @@ gym = firebase_data_api("apis/fitnessv1-f3d22-firebase-adminsdk-dwou5-c1a931d3d0
 
 test_string = "None"
 
-def generateOTP():
-    digits = "123456789"
+def generateOTP(mobile_number):
+    digits = "0123456789"
     OTP = ""
     for i in range(6) :
         OTP += digits[math.floor(random.random() * 10)]
+    client.publish(
+        PhoneNumber="+91"+mobile_number,
+        Message=OTP
+    )
     return OTP
 
 
 
 def otp_verification(request):
-    otp = generateOTP()
+    otp = generateOTP(request.GET['mobile'])
     return JsonResponse({'Otp':otp})
 
 
