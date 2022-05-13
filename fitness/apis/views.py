@@ -33,6 +33,13 @@ def generateOTP(mobile_number):
     return OTP
 
 
+def send_sms(request):
+    client.publish(
+        PhoneNumber="+91"+request.GET['mobile'],
+        Message="Your 6-digit Verification Code is "+request.GET['otp']
+    )
+    return JsonResponse({'status':"sent"})
+
 
 def otp_verification(request):
     otp = generateOTP(request.GET['mobile'])
