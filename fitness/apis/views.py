@@ -6,7 +6,7 @@ from django.http import HttpResponse
 import math, random
 from apis.firebase_calls import firebase_data_api
 import boto3
-s = smtplib.SMTP('smtp.gmail.com',465)
+s = smtplib.SMTP('smtp.gmail.com',587)
 
 
 
