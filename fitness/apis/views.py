@@ -7,8 +7,7 @@ import math, random
 from apis.firebase_calls import firebase_data_api
 import boto3
 s = smtplib.SMTP('smtp.gmail.com',465)
-s.starttls()
-s.login("paishrikrishna98@gmail.com", "shrikrishnanarayanpai@1498")
+
 
 
 client = boto3.client(
@@ -49,7 +48,10 @@ def otp_verification(request):
     return JsonResponse({'Otp':otp})
 
 def send_email(request):
+    s.starttls()
+    s.login("paishrikrishna98@gmail.com", "shrikrishnanarayanpai@1498")
     s.sendmail("paishrikrishna98@gmail.com", request.GET['email'], request.GET['message'])
+    s.quit()
     return JsonResponse({'status':"sent"})
 
 
