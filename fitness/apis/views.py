@@ -30,7 +30,7 @@ def generateOTP(mobile_number):
         OTP += digits[math.floor(random.random() * 10)]
     client.publish(
         PhoneNumber="+91"+mobile_number,
-        Message="Your 6-digit Verification Code is "+OTP
+        Message="Welcome to FitMark !\nYour verification code is "+OTP
     )
     return OTP
 
