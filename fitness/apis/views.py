@@ -38,7 +38,7 @@ def generateOTP(mobile_number):
 def send_sms(request):
     client.publish(
         PhoneNumber="+91"+request.GET['mobile'],
-        Message="Your 6-digit Verification Code is "+request.GET['sms_body']
+        Message="Welcome to FitMark !\nYour verification code is "+request.GET['sms_body']
     )
     return JsonResponse({'status':"sent"})
 
