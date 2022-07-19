@@ -127,7 +127,7 @@ def user_exists(request):
 		
 		for details in user_detail_data:
 			if int(details['Mobile Number']) == int(request.GET['mobile_number']):
-				return '200'
+				return JsonResponse({"status":200})
 
-	return '400'
+	return JsonResponse({"status":404})
 
