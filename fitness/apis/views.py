@@ -126,7 +126,7 @@ def user_exists(request):
 		offset += 1000
 		
 		for details in user_detail_data:
-			if details['Mobile Number'] == request.GET['mobile_number']:
+			if int(details['Mobile Number']) > 0:
 				return 200
 
 	return 400
