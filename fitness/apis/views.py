@@ -6,7 +6,7 @@ from django.http import HttpResponse
 import math, random
 from apis.firebase_calls import firebase_data_api
 import boto3
-import requests
+import requests as pd
 import json
 
 s = smtplib.SMTP('smtp.gmail.com',587)
@@ -120,7 +120,7 @@ def user_exists(request):
 
 	while len(user_detail_data) > 0:
 		
-		response = requests.get('https://api.adalo.com/v0/apps/159805a3-ce5f-441e-abf5-2b2a5aa25edb/collections/t_dc2d5eac4c3a417797c3f8e3178b55a8?offset={start}&limit={end}'.format(start = offset,end = offset + 10), 
+		response = pd.get('https://api.adalo.com/v0/apps/159805a3-ce5f-441e-abf5-2b2a5aa25edb/collections/t_dc2d5eac4c3a417797c3f8e3178b55a8?offset={start}&limit={end}'.format(start = offset,end = offset + 10), 
 		headers = {"Authorization":"Bearer 8yf6exu1tomzbf7620rcc5xpz","Content-Type":"application/json"}).text
 		user_detail_data = json.loads(response)['records']
 		offset += 1000
