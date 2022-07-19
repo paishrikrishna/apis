@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apis.views import otp_verification, send_email,dashboard_apis, send_sms,membership_data, user_data, available_dashboards, add_dashboard,todays_attendance_record, test, membership_detail
+from apis.views import otp_verification, user_exists, send_email,dashboard_apis, send_sms,membership_data, user_data, available_dashboards, add_dashboard,todays_attendance_record, test, membership_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('otp/',otp_verification),
@@ -28,5 +28,6 @@ urlpatterns = [
     path('test/',test),
     path('send_sms/',send_sms),
     path('send_email/',send_email),
-    path('membership_detail/',membership_detail)
+    path('membership_detail/',membership_detail),
+    path('user_exists/',user_exists)
 ]
