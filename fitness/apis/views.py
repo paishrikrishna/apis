@@ -146,7 +146,7 @@ def user_exists_prod(request):
 		offset += 1000
 		
 		for details in user_detail_data:
-			if int(details['Phone Number']) == int(request.GET['mobile_number']):
+			if int(details['Phone Number']) == int(request.GET['mobile_number']) and str(details['User/Owner']).upper() == str(request.GET['access']).upper():
 				return JsonResponse({"status":200})
 
 	return JsonResponse({"status":404})
