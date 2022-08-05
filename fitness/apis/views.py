@@ -134,20 +134,22 @@ def user_exists(request):
 
 
 def user_exists_prod(request):
+	try:
+		user_detail_data = ['test']
+		offset = 0
 
-	user_detail_data = ['test']
-	offset = 0
+		while len(user_detail_data) > 0:
 
-	while len(user_detail_data) > 0:
-		
-		response = requests.get('https://api.adalo.com/v0/apps/'+str(request.GET['app_id'])+'/collections/'+str(request.GET['collection_id'])+'?offset={start}&limit={end}'.format(start = offset,end = offset + 1000), 
-		headers = {"Authorization":"Bearer "+str(request.GET['token']),"Content-Type":"application/json"}).text
-		user_detail_data = json.loads(response)['records']
-		offset += 1000
-		
-		for details in user_detail_data:
-			if int(details['Phone Number']) == int(request.GET['mobile_number']) and str(details['User/Owner']).upper() == str(request.GET['access']).upper():
-				return JsonResponse({"status":200})
+			response = requests.get('https://api.adalo.com/v0/apps/'+str(request.GET['app_id'])+'/collections/'+str(request.GET['collection_id'])+'?offset={start}&limit={end}'.format(start = offset,end = offset + 1000), 
+			headers = {"Authorization":"Bearer "+str(request.GET['token']),"Content-Type":"application/json"}).text
+			user_detail_data = json.loads(response)['records']
+			offset += 1000
+
+			for details in user_detail_data:
+				if int(details['Phone Number']) == int(request.GET['mobile_number']) and str(details['User/Owner']).upper() == str(request.GET['access']).upper():
+					return JsonResponse({"status":200})
+	except:
+		pass
 
 	return JsonResponse({"status":404})
 
